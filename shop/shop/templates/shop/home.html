@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+	<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/prettyPhoto.css' %}" rel="stylesheet">
+    <link href="{% static 'css/price-range.css' %}" rel="stylesheet">
+    <link href="{% static 'css/animate.css' %}" rel="stylesheet">
+	<link href="{% static 'css/main.css' %}" rel="stylesheet">
+	<link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+	<script src="{% static 'js/html5shiv.js' %}"></script>
+    <script src="{% static 'js/respond.min.js' %}"></script>
+
+    <title>Home</title>
+
+
+
+    <![endif]-->
+    <link rel="shortcut icon" href="images/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+</head><!--/head-->
+
+<body>
+	<header id="header"><!--header-->
+		<div class="header_top"><!--header_top-->
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="contactinfo">
+							<ul class="nav nav-pills">
+								<li><a href="#"><i class="fa fa-phone"></i> +1 23 45 67 890</a></li>
+								<li><a href="#"><i class="fa fa-envelope"></i> admin@noreply.com</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="social-icons pull-right">
+							<ul class="nav navbar-nav">
+								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+								<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+								<li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+								<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/header_top-->
+
+		<div class="header-middle"><!--header-middle-->
+			<div class="container">
+				<div class="row">
+
+					<div class="col-sm-8">
+						<div class="shop-menu pull-right">
+							<ul class="nav navbar-nav">
+								{% if user.is_authenticated %}
+									<li><a href="{% url 'home' %}"><i class="fa fa-star"></i>Home</a></li>
+									<li><a href="{% url 'user_profile' %}"><i class="fa fa-user"></i>Account</a></li>
+									<li><a href="{% url 'order_list' %}"><i class="fa fa-crosshairs"></i>Orders</a></li>
+									<li><a href="{% url 'cart_detail' %}"><i class="fa fa-shopping-cart"></i>Cart</a></li>
+									<li><a href="{% url 'logout' %}"><i class="fa fa-lock"></i>Logout</a></li>
+								{% else %}
+									<li><a href="{% url 'home' %}"><i class="fa fa-star"></i>Home</a></li>
+									<li><a href="{% url 'login' %}"><i class="fa fa-user"></i>Login</a></li>
+									<li><a href="{% url 'register' %}"><i class="fa fa-lock"></i>Register</a></li>
+								{% endif %}
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/header-middle-->
+
+
+	</header><!--/header-->
+
+	<section id="slider"><!--slider-->
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<div id="slider-carousel" class="carousel slide" data-ride="carousel">
+						<ol class="carousel-indicators">
+							<li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
+							<li data-target="#slider-carousel" data-slide-to="1"></li>
+							<li data-target="#slider-carousel" data-slide-to="2"></li>
+						</ol>
+
+						<div class="carousel-inner">
+							<div class="item active">
+								<div class="col-sm-6">
+									<h1><span>Box</span>-Set</h1>
+									<h2>Harry Potter</h2>
+									<p>A beautiful boxed set containing all seven Harry Potter novels in paperback. </p>
+									<a href="{% url 'book_detail' 33 %}" class="btn btn-default">Get it now</a>
+								</div>
+								<div class="col-sm-6">
+									<img src="https://blogbucket.fra1.digitaloceanspaces.com/blogbucket/book_image/book_image/35774288-1VOC-pdpxl.jpg" class="girl img-responsive" alt="" />
+
+								</div>
+							</div>
+							<div class="item">
+								<div class="col-sm-6">
+									<h1><span>Collection</span>-Boxed Set</h1>
+									<h2>Charles Dickens 5 Books</h2>
+									<p>Major Works of Charles Dickens 5 Books Collection Boxed Set (Great Expectations, A Tale of Two Cities, A Christmas Carol, Hard Times & Oliver Twist): Great Expectations: </p>
+									<a href="{% url 'book_detail' 31 %}" class="btn btn-default">Get it now</a>
+								</div>
+								<div class="col-sm-6">
+									<img src="https://blogbucket.fra1.digitaloceanspaces.com/blogbucket/book_image/book_image/41kqqcfU2nL._SX480_BO1204203200_.jpg" class="girl img-responsive" alt="" />
+
+								</div>
+							</div>
+
+							<div class="item">
+								<div class="col-sm-6">
+									<h1><span>Bestselling</span>-Pack</h1>
+									<h2>The Best of Sherlock Holmes</h2>
+									<p>Sir Arthur Conan Doyle was most noted for creating the fictional detective Sherlock Holmes, who has been listed with the Guinness World Records as the most portrayed movie character in history. </p>
+									<a href="{% url 'book_detail' 32 %}" class="btn btn-default">Get it now</a>
+								</div>
+								<div class="col-sm-6">
+									<img src="https://blogbucket.fra1.digitaloceanspaces.com/blogbucket/book_image/book_image/51SVi8gKijL._SX391_BO1204203200_.jpg" class="girl img-responsive" alt="" />
+								</div>
+							</div>
+
+						</div>
+
+						<a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
+							<i class="fa fa-angle-left"></i>
+						</a>
+						<a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
+							<i class="fa fa-angle-right"></i>
+						</a>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</section><!--/slider-->
+
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="left-sidebar">
+						<h2>Genre</h2>
+						<div class="panel-group category-products" id="accordian"><!--category-productsr-->
+
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title"><a href="?genre=Drama">Drama</a></h4>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title"><a href="?genre=Mystery">Mystery</a></h4>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title"><a href="?genre=Fantasy">Fantasy</a></h4>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title"><a href="?genre=Historical">Historical</a></h4>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title"><a href="?genre=Horror">Horror</a></h4>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title"><a href="?genre=Sci-Fi">Sci-Fi</a></h4>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title"><a href="?genre=Thriller">Thriller</a></h4>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title"><a href="?genre=Comedy">Comedy</a></h4>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title"><a href="?genre=Science">Science</a></h4>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title"><a href="?genre=Romance">Romance</a></h4>
+								</div>
+							</div>
+
+						</div><!--/category-products-->
+
+						<div class="brands_products"><!--brands_products-->
+							<h2>Best Authors</h2>
+							<div class="brands-name">
+								<ul class="nav nav-pills nav-stacked">
+									<li><a href="{% url 'author_detail' 8 %}"> </span>Kentaro Miura</a></li>
+									<li><a href="{% url 'author_detail' 9 %}"> </span>Stephen King</a></li>
+									<li><a href="{% url 'author_detail' 2 %}"> </span>FRÉDÉRIC BEIGBEDER</a></li>
+									<li><a href="{% url 'author_detail' 20 %}"> </span>OSCAR WILDE</a></li>
+									<li><a href="{% url 'author_detail' 19 %}"> </span>IRVINE WELSH</a></li>
+									<li><a href="{% url 'author_detail' 12 %}"> </span>CHUCK PALAHNIUK</a></li>
+									<li><a href="{% url 'author_detail' 6 %}"> </span>STEPHEN HAWKING</a></li>
+								</ul>
+							</div>
+						</div><!--/brands_products-->
+
+					</div>
+				</div>
+
+				<div class="col-sm-9 padding-right">
+					<div class="features_items"><!--features_items-->
+						<h2 class="title text-center">New Books</h2>
+						{% for book in page_obj %}
+						<div class="col-sm-4">
+							<div class="product-image-wrapper">
+								<div class="single-products">
+										<div class="productinfo text-center">
+											{% if book.image %}
+											  <img src="{{ book.image.url }}" class="card-img-top"></a>
+											{% endif %}
+											<h2>$ {{ book.price }}</h2>
+											<p><a href="{% url 'book_detail' book.id %}" >{{ book.title }}</a></p>
+											{% if user.is_authenticated %}
+
+											  <form action="{% url 'cart_add' book.id %}" class="btn btn-default add-to-cart" method="post">
+												{% csrf_token %}
+												{% if cart_form.errors %}
+												  <div class="text-danger mb-2">
+													{% for error in cart_form.errors %}
+													  {{ error }}
+													{% endfor %}
+												  </div>
+												{% endif %}
+												{% if cart_form.non_field_errors %}
+												  <div class="text-danger mb-2">{{ cart_form.non_field_errors }}</div>
+												{% endif %}
+												<div class="input-group">
+												  {{ cart_form.quantity }}
+												  <div class="input-group-append">
+													<button type="submit" class="btn btn-sm btn-outline-secondary">Add to cart</button>
+												  </div>
+												</div>
+											  </form>
+											{% endif %}
+
+
+										</div>
+								</div>
+							</div>
+						</div>
+						{% endfor %}
+
+					</div><!--features_items-->
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<footer id="footer"><!--Footer-->
+		<div class="text-center">
+			<ul class="pagination">
+			{% if page_obj.has_previous %}
+				<li>
+					<a href="?page={{ page_obj.previous_page_number }}">previous</a>
+				</li>
+				{% endif %}
+				{% for i in page_obj.paginator.page_range %}
+				{% if page_obj.number == i %}
+				<li class="active">
+					<a href="?page={{ i }}">{{ i }}</a>
+				</li>
+				{% else %}
+				{% if i > page_obj.number|add:'-3' and i < page_obj.number|add:'3' %}
+				<li>
+					<a href="?page={{ i }}">{{ i }}</a>
+				</li>
+				{% endif %}
+				{% endif %}
+				{% endfor %}
+				{% if page_obj.has_next %}
+				<li>
+					<a href="?page={{ page_obj.next_page_number }}">next</a>
+				</li>
+				{% endif %}
+			</ul>
+		</div>
+		<div class="footer-top">
+			<div class="container">
+
+			</div>
+		</div>
+
+		<div class="footer-widget">
+			<div class="container">
+				<div class="row">
+				</div>
+			</div>
+		</div>
+
+		<div class="footer-bottom">
+			<div class="container">
+				<div class="row">
+					<p class="pull-left">BookShop by beardedcat. All rights reserved.</p>
+					<p class="pull-right">GitHub <span><a target="_blank" href="https://github.com/beardedcatfox/Shop">beardedcatfox</a></span></p>
+				</div>
+			</div>
+		</div>
+
+	</footer><!--/Footer-->
+
+    <script src="{% static 'js/jquery.js' %}"></script>
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'js/jquery.scrollUp.min.js' %}"></script>
+	<script src="{% static 'js/price-range.js' %}"></script>
+    <script src="{% static 'js/jquery.prettyPhoto.js' %}"></script>
+    <script src="{% static 'js/main.js '%}"></script>
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+	<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/prettyPhoto.css' %}" rel="stylesheet">
+    <link href="{% static 'css/price-range.css' %}" rel="stylesheet">
+    <link href="{% static 'css/animate.css' %}" rel="stylesheet">
+	<link href="{% static 'css/main.css' %}" rel="stylesheet">
+	<link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+	<script src="{% static 'js/html5shiv.js' %}"></script>
+    <script src="{% static 'js/respond.min.js' %}"></script>
+
+    <title>Register</title>
+
+
+
+    <![endif]-->
+    <link rel="shortcut icon" href="images/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+</head><!--/head-->
+
+<body>
+	<header id="header"><!--header-->
+		<div class="header_top"><!--header_top-->
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="contactinfo">
+							<ul class="nav nav-pills">
+								<li><a href="#"><i class="fa fa-phone"></i> +1 23 45 67 890</a></li>
+								<li><a href="#"><i class="fa fa-envelope"></i> admin@noreply.com</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="social-icons pull-right">
+							<ul class="nav navbar-nav">
+								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+								<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+								<li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+								<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/header_top-->
+
+		<div class="header-middle"><!--header-middle-->
+			<div class="container">
+				<div class="row">
+
+					<div class="col-sm-8">
+						<div class="shop-menu pull-right">
+							<ul class="nav navbar-nav">
+								{% if user.is_authenticated %}
+									<li><a href="{% url 'home' %}"><i class="fa fa-star"></i>Home</a></li>
+									<li><a href="{% url 'user_profile' %}"><i class="fa fa-user"></i>Account</a></li>
+									<li><a href="{% url 'order_list' %}"><i class="fa fa-crosshairs"></i>Orders</a></li>
+									<li><a href="{% url 'cart_detail' %}"><i class="fa fa-shopping-cart"></i>Cart</a></li>
+									<li><a href="{% url 'logout' %}"><i class="fa fa-lock"></i>Logout</a></li>
+								{% else %}
+									<li><a href="{% url 'home' %}"><i class="fa fa-star"></i>Home</a></li>
+									<li><a href="{% url 'login' %}"><i class="fa fa-user"></i>Login</a></li>
+									<li><a href="{% url 'register' %}"><i class="fa fa-lock"></i>Register</a></li>
+								{% endif %}
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/header-middle-->
+
+
+	</header><!--/header-->
+
+    <section id="cart_items">
+		<div class="container">
+			<div class="breadcrumbs">
+				<ol class="breadcrumb">
+                  <li><a href="{% url 'home' %}">Home</a></li>
+				  <li class="active">Shopping Cart</li>
+				</ol>
+			</div>
+			<div class="table-responsive cart_info">
+                <table class="table table-condensed">
+                  <thead>
+                    <tr class="cart_menu">
+                      <th>Book</th>
+                      <th>Price</th>
+                      <th>Subtotal</th>
+                      <th>Quantity</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for cart_item in cart_items %}
+                    <tr>
+                      <td><a href="{% url 'book_detail' cart_item.book.id %}">{{ cart_item.book.title }}</a></td>
+                      <td>{{ cart_item.book.price }}</td>
+                      <td>{{ cart_item.get_subtotal  }}</td>
+                      <td>
+                        <form method="POST">
+                          {% csrf_token %}
+                          <input type="number" name="{{ cart_item.id }}" value="{{ cart_item.quantity }}" min="1" max="10">
+                          <input type="submit" value="Update">
+                        </form>
+                      </td>
+                      <td>
+                        <form method="POST">
+                          {% csrf_token %}
+                          <input type="hidden" name="delete" value="{{ cart_item.id }}">
+                          <input type="submit" value="Delete">
+                        </form>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <td colspan="3"><h2>Total:</h2></td>
+                      <td><h2>{{ total_cost }} </h2></td>
+                      <td></td>
+                    </tr>
+                  </tfoot>
+                </table>
+
+
+			</div>
+		</div>
+	</section> <!--/#cart_items-->
+
+	<section id="do_action">
+		<div class="container">
+			<div class="heading">
+				<h3>Ready to make an Order?</h3>
+				<p>Check quantity and items and go to make Order!</p>
+			</div>
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="chose_area">
+                        <form action="{% url 'create_order' %}" method="POST">-->
+                                {% csrf_token %}
+                                {{ order_form.as_p }}
+                                <input type="submit" class="btn btn-default check_out" value="Submit">
+                        </form>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</section><!--/#do_action-->
+
+	<footer id="footer"><!--Footer-->
+
+		<div class="footer-top">
+			<div class="container">
+
+			</div>
+		</div>
+
+		<div class="footer-widget">
+			<div class="container">
+				<div class="row">
+				</div>
+			</div>
+		</div>
+
+		<div class="footer-bottom">
+			<div class="container">
+				<div class="row">
+					<p class="pull-left">BookShop by beardedcat. All rights reserved.</p>
+					<p class="pull-right">GitHub <span><a target="_blank" href="https://github.com/beardedcatfox/Shop">beardedcatfox</a></span></p>
+				</div>
+			</div>
+		</div>
+
+	</footer><!--/Footer-->
+
+    <script src="{% static 'js/jquery.js' %}"></script>
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'js/jquery.scrollUp.min.js' %}"></script>
+	<script src="{% static 'js/price-range.js' %}"></script>
+    <script src="{% static 'js/jquery.prettyPhoto.js' %}"></script>
+    <script src="{% static 'js/main.js '%}"></script>
+</body>
+</html>

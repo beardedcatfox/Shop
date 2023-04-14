@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+	<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/prettyPhoto.css' %}" rel="stylesheet">
+    <link href="{% static 'css/price-range.css' %}" rel="stylesheet">
+    <link href="{% static 'css/animate.css' %}" rel="stylesheet">
+	<link href="{% static 'css/main.css' %}" rel="stylesheet">
+	<link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+	<script src="{% static 'js/html5shiv.js' %}"></script>
+    <script src="{% static 'js/respond.min.js' %}"></script>
+
+    <title>Login</title>
+
+
+
+    <![endif]-->
+    <link rel="shortcut icon" href="images/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+</head><!--/head-->
+
+<body>
+	<header id="header"><!--header-->
+		<div class="header_top"><!--header_top-->
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="contactinfo">
+							<ul class="nav nav-pills">
+								<li><a href="#"><i class="fa fa-phone"></i> +1 23 45 67 890</a></li>
+								<li><a href="#"><i class="fa fa-envelope"></i> admin@noreply.com</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="social-icons pull-right">
+							<ul class="nav navbar-nav">
+								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+								<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+								<li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+								<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/header_top-->
+
+		<div class="header-middle"><!--header-middle-->
+			<div class="container">
+				<div class="row">
+
+					<div class="col-sm-8">
+						<div class="shop-menu pull-right">
+							<ul class="nav navbar-nav">
+								{% if user.is_authenticated %}
+									<li><a href="{% url 'home' %}"><i class="fa fa-star"></i>Home</a></li>
+									<li><a href="{% url 'user_profile' %}"><i class="fa fa-user"></i>Account</a></li>
+									<li><a href="{% url 'order_list' %}"><i class="fa fa-crosshairs"></i>Orders</a></li>
+									<li><a href="{% url 'cart_detail' %}"><i class="fa fa-shopping-cart"></i>Cart</a></li>
+									<li><a href="{% url 'logout' %}"><i class="fa fa-lock"></i>Logout</a></li>
+								{% else %}
+									<li><a href="{% url 'home' %}"><i class="fa fa-star"></i>Home</a></li>
+									<li><a href="{% url 'login' %}"><i class="fa fa-user"></i>Login</a></li>
+									<li><a href="{% url 'register' %}"><i class="fa fa-lock"></i>Register</a></li>
+								{% endif %}
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/header-middle-->
+
+
+	</header><!--/header-->
+
+    <section id="form"><!--form-->
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-4 col-sm-offset-1">
+					<div class="login-form"><!--login form-->
+						<h1>Order № {{ order.id }}</h1>
+                          <p><strong>Name:</strong> {{ order.first_name }} {{ order.last_name }}</p>
+                          <p><strong>Address:</strong> {{ order.address }}</p>
+                          <p><strong>Status:</strong> {{ order.status }}</p>
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                <th>Book</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Total price</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {% for item in order.orderitem_set.all %}
+                                <tr>
+                                  <td><a href="{% url 'book_detail' item.book.id %}">{{ item.book.title }}</a></td>
+                                  <td>{{ item.quantity }}</td>
+                                  <td>{{ item.price }}</td>
+                                  <td>{{ item.get_cost }}</td>
+                                </tr>
+                              {% endfor %}
+                            </tbody>
+                            <tfoot>
+                              <tr>
+                                <td colspan="3"></td>
+                                <td><strong>Total:</strong> {{ order.get_total }}</td>
+                              </tr>
+                            </tfoot>
+                          </table>
+
+					</div><!--/login form-->
+				</div>
+
+			</div>
+		</div>
+	</section><!--/form-->
+
+	<footer id="footer"><!--Footer-->
+
+		<div class="footer-top">
+			<div class="container">
+
+			</div>
+		</div>
+
+		<div class="footer-widget">
+			<div class="container">
+				<div class="row">
+				</div>
+			</div>
+		</div>
+
+		<div class="footer-bottom">
+			<div class="container">
+				<div class="row">
+					<p class="pull-left">BookShop by beardedcat. All rights reserved.</p>
+					<p class="pull-right">GitHub <span><a target="_blank" href="https://github.com/beardedcatfox/Shop">beardedcatfox</a></span></p>
+				</div>
+			</div>
+		</div>
+
+	</footer><!--/Footer-->
+
+    <script src="{% static 'js/jquery.js' %}"></script>
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'js/jquery.scrollUp.min.js' %}"></script>
+	<script src="{% static 'js/price-range.js' %}"></script>
+    <script src="{% static 'js/jquery.prettyPhoto.js' %}"></script>
+    <script src="{% static 'js/main.js '%}"></script>
+</body>
+</html>

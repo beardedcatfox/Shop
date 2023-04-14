@@ -1,0 +1,16 @@
+[flake8]
+max-line-length = 120
+exclude =
+    # We don't touch git directories
+    .git,
+    # Cache directories also
+    __pycache__,
+    # .venv and venv dirs only for us
+    venv,
+    # Migrations creating by Django, we don't touch it
+    migrations,
+    # Our tests its only our business =)
+    tests.py,
+    tests
+ignore = DJ08, A003
+max-complexity = 10
